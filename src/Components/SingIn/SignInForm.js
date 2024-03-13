@@ -3,8 +3,8 @@ import {
   signInWithEmailAndPasswordFn,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase";
-import Input from "../UI/Input/Input";
-import Button from "../UI/Button/Button";
+import { Input } from "../UI/Input/Input";
+import { Button, BUTTON_TYPE_CLASSES } from "../UI/Button/Button";
 
 import "./SignInForm.style.scss";
 
@@ -62,7 +62,10 @@ const SignInForm = () => {
         />
         <div className="buttons-container">
           <Button type="submit">Sign in</Button>
-          <Button buttonType="google" onClick={logGoogleUser}>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            onClick={logGoogleUser}
+          >
             Sign in with Google
           </Button>
         </div>

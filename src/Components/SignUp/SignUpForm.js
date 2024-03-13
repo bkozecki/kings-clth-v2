@@ -3,8 +3,8 @@ import {
   createUserDocFromAuth,
   createAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase";
-import Input from "../UI/Input/Input";
-import Button from "../UI/Button/Button";
+import { Input } from "../UI/Input/Input";
+import { Button, BUTTON_TYPE_CLASSES } from "../UI/Button/Button";
 
 import "./SignUpForm.style.scss";
 
@@ -78,7 +78,7 @@ const SignUpForm = () => {
           required={true}
           type="password"
         />
-        <Button>Sign up!</Button>
+        <Button buttonType={BUTTON_TYPE_CLASSES.default}>Sign up!</Button>
       </form>
     </div>
   );

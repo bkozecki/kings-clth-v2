@@ -1,11 +1,17 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { CartContext } from "../../contexts/cart.context";
-import Button from "../UI/Button/Button";
-import "./CartDropdown.style.scss";
-import CartItem from "../CartItem/CartItem";
+import {
+  Button,
+  DefaultBtn,
+  GoogleSignInBtn,
+  InvertedBtn,
+  BUTTON_TYPE_CLASSES,
+} from "../UI/Button/Button";
+import { CartItem } from "../CartItem/CartItem";
 
-const CartDropdown = ({ setCartOpen }) => {
+export const CartDropdown = ({ setCartOpen }) => {
   const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
   const goToCheckoutPage = () => {
@@ -13,21 +19,62 @@ const CartDropdown = ({ setCartOpen }) => {
     setCartOpen(false);
   };
   return (
-    <div className="cart-dropdown-container">
-      <span
-        onClick={() => setCartOpen((prevState) => !prevState)}
-        style={{ marginLeft: "auto", cursor: "pointer" }}
-      >
+    <CartDropdownWrap>
+      <CloseBtn onClick={() => setCartOpen((prevState) => !prevState)}>
         &times;
-      </span>
-      <div className="cart-items">
-        {cartItems.map((el) => (
-          <CartItem key={el.id} cartItem={el} />
-        ))}
-      </div>
-      <Button onClick={goToCheckoutPage}>Checkout</Button>
-    </div>
+      </CloseBtn>
+      <CartItems className="cart-items">
+        {cartItems.length > 0 ? (
+          cartItems.map((el) => <CartItem key={el.id} cartItem={el} />)
+        ) : (
+          <EmptyMsg>Your cart is empty!</EmptyMsg>
+        )}
+      </CartItems>
+      <Button
+        buttonType={BUTTON_TYPE_CLASSES.default}
+        onClick={goToCheckoutPage}
+      >
+        Checkout
+      </Button>
+    </CartDropdownWrap>
   );
 };
 
-export default CartDropdown;
+const CartDropdownWrap = styled.div`
+  position: absolute;
+  width: 240px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid black;
+  background-color: white;
+  top: 90px;
+  right: 40px;
+  z-index: 5;
+
+  ${DefaultBtn},
+  ${GoogleSignInBtn},
+  ${InvertedBtn} {
+    margin-top: auto;
+  }
+`;
+
+const EmptyMsg = styled.div`
+  font-size: 18px;
+  margin-top: 2rem;
+  text-align: center;
+`;
+
+export const CloseBtn = styled.span`
+  margin-left: auto;
+  font-size: 1.2rem;
+  cursor: pointer;
+`;
+
+const CartItems = styled.div`
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+`;
