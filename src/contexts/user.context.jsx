@@ -3,6 +3,7 @@ import {
   onAuthStateChangedListener,
   createUserDocFromAuth,
 } from "../utils/firebase/firebase";
+
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => {},
