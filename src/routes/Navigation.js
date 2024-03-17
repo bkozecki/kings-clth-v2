@@ -8,8 +8,6 @@ import { CartDropdown } from "../Components/CartDropdown/CartDropdown";
 import { CartContext } from "../contexts/cart.context";
 import styled from "styled-components";
 
-import "../styles/style.scss";
-
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { cartOpen, setCartOpen, cartCount } = useContext(CartContext);
@@ -17,8 +15,8 @@ const Navigation = () => {
   return (
     <>
       <NavigationWrap>
-        <LogoLinkWrap className="logo-container" to="/">
-          <CrownLogo className="logo" />
+        <LogoLinkWrap to="/">
+          <CrownLogo />
         </LogoLinkWrap>
         <NavLinksWrap>
           <NavLink to="/shop">SHOP</NavLink>

@@ -1,6 +1,7 @@
 import { useContext } from "react";
+import styled from "styled-components";
+
 import { CartContext } from "../../contexts/cart.context";
-import "./CheckOutItem.styles.scss";
 
 export const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
@@ -8,29 +9,59 @@ export const CheckoutItem = ({ cartItem }) => {
     useContext(CartContext);
 
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
+    <CheckoutItemWrap>
+      <ImgWrap>
         <img src={imageUrl} alt={name} />
-      </div>
-      <span className="name">{name}</span>
-      <span className="quantity">
+      </ImgWrap>
+      <Width>{name}</Width>
+      <Quantity>
         {quantity > 1 ? (
-          <div className="arrow" onClick={() => removeItemfromCart(cartItem)}>
-            &#10094;
-          </div>
+          <Arrow onClick={() => removeItemfromCart(cartItem)}>&#10094;</Arrow>
         ) : null}
-        <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => addItemToCart(cartItem)}>
-          &#10095;
-        </div>
-      </span>
-      <span className="price">{price}€</span>
-      <span
-        className="remove-button"
-        onClick={() => clearItemfromCart(cartItem)}
-      >
+        <Margin>{quantity}</Margin>
+        <Arrow onClick={() => addItemToCart(cartItem)}>&#10095;</Arrow>
+      </Quantity>
+      <Width>{price}€</Width>
+      <RemoveButton onClick={() => clearItemfromCart(cartItem)}>
         &#10005;
-      </span>
-    </div>
+      </RemoveButton>
+    </CheckoutItemWrap>
   );
 };
+
+const CheckoutItemWrap = styled.div`
+  width: 100%;
+  display: flex;
+  min-height: 100px;
+  border-bottom: 1px solid darkgrey;
+  padding: 15px 0;
+  font-size: 20px;
+  align-items: center;
+`;
+
+const ImgWrap = styled.div`
+  width: 23%;
+  padding-right: 15px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+const Width = styled.div`
+  width: 23%;
+`;
+const Quantity = styled.div`
+  display: flex;
+  width: 23%;
+`;
+const Arrow = styled.div`
+  cursor: pointer;
+`;
+const Margin = styled.div`
+  margin: 0 10px;
+`;
+const RemoveButton = styled.span`
+  padding-left: 12px;
+  cursor: pointer;
+`;

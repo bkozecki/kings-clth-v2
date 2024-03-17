@@ -3,10 +3,11 @@ import {
   signInWithEmailAndPasswordFn,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase";
+import styled from "styled-components";
+
 import { Input } from "../UI/Input/Input";
 import { Button, BUTTON_TYPE_CLASSES } from "../UI/Button/Button";
-
-import "./SignInForm.style.scss";
+import { Text } from "../../Components/UI/Text/Text";
 
 const deafaultFormFields = {
   email: "",
@@ -40,9 +41,9 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SingUpWrap>
       <h2>Don't have an account?</h2>
-      <span>Sign in with us!</span>
+      <Text>Sign in with us!</Text>
       <form onSubmit={(ev) => handleSubmit(ev)}>
         <Input
           name="email"
@@ -60,7 +61,7 @@ const SignInForm = () => {
           label={"Your password"}
           required={true}
         />
-        <div className="buttons-container">
+        <ButtonsWrap>
           <Button type="submit">Sign in</Button>
           <Button
             buttonType={BUTTON_TYPE_CLASSES.google}
@@ -68,10 +69,24 @@ const SignInForm = () => {
           >
             Sign in with Google
           </Button>
-        </div>
+        </ButtonsWrap>
       </form>
-    </div>
+    </SingUpWrap>
   );
 };
 
 export default SignInForm;
+
+const SingUpWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  h2 {
+    margin: 10px 0;
+  }
+`;
+
+const ButtonsWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

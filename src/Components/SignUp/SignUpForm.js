@@ -3,10 +3,11 @@ import {
   createUserDocFromAuth,
   createAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase";
+import styled from "styled-components";
+
 import { Input } from "../UI/Input/Input";
 import { Button, BUTTON_TYPE_CLASSES } from "../UI/Button/Button";
-
-import "./SignUpForm.style.scss";
+import { Text } from "../UI/Text/Text";
 
 const deafaultFormFields = {
   displayName: "",
@@ -43,9 +44,9 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignUpWrap>
       <h2>Don't have an account?</h2>
-      <span>Sign up with us!</span>
+      <Text>Sign up with us!</Text>
       <form onSubmit={(ev) => handleSubmit(ev)}>
         <Input
           name={"displayName"}
@@ -80,8 +81,18 @@ const SignUpForm = () => {
         />
         <Button buttonType={BUTTON_TYPE_CLASSES.default}>Sign up!</Button>
       </form>
-    </div>
+    </SignUpWrap>
   );
 };
 
 export default SignUpForm;
+
+const SignUpWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+
+  h2 {
+    margin: 10px 0;
+  }
+`;

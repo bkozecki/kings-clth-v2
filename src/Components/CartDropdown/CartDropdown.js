@@ -23,7 +23,7 @@ export const CartDropdown = ({ setCartOpen }) => {
       <CloseBtn onClick={() => setCartOpen((prevState) => !prevState)}>
         &times;
       </CloseBtn>
-      <CartItems className="cart-items">
+      <CartItems>
         {cartItems.length > 0 ? (
           cartItems.map((el) => <CartItem key={el.id} cartItem={el} />)
         ) : (
@@ -68,7 +68,7 @@ const EmptyMsg = styled.div`
 
 export const CloseBtn = styled.span`
   margin-left: auto;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
 `;
 
@@ -76,5 +76,5 @@ const CartItems = styled.div`
   height: 240px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: auto;
 `;
