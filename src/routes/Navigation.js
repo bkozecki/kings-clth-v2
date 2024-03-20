@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { UserContext } from "../contexts/user.context";
+import { useSelector } from "react-redux";
+
 import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as CrownLogo } from "../../src/assets/crown.svg";
 import { signOutUser } from "../utils/firebase/firebase";
@@ -9,7 +10,7 @@ import { CartContext } from "../contexts/cart.context";
 import styled from "styled-components";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const { cartOpen, setCartOpen, cartCount } = useContext(CartContext);
 
   return (
