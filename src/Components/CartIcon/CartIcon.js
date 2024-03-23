@@ -1,10 +1,15 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 
 export const CartIcon = ({ setCartOpen, count }) => {
+  const dispatch = useDispatch();
   //TODO: create a fn to open close cart on click/mouseleave
   return (
-    <CartIconWrap onClick={() => setCartOpen((prevState) => !prevState)}>
+    <CartIconWrap
+      onClick={() => dispatch(setCartOpen((prevState) => !prevState))}
+    >
       <ShoppingIconWrap />
       <ItemCount>{count}</ItemCount>
     </CartIconWrap>

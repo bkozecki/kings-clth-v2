@@ -9,6 +9,7 @@ import { setCategories } from "../../store/categories/categoryAction";
 
 const Shop = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const getCategoryMap = async () => {
       const categoriesArr = await getCategoriesAndDocs("categories");

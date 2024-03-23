@@ -1,11 +1,12 @@
-import { useContext } from "react";
 import styled from "styled-components";
 
-import { CartContext } from "../../contexts/cart.context";
 import { CheckoutItem } from "../../Components/CheckoutItem/CheckoutItem";
+import { useSelector } from "react-redux";
+import { selectCartItems, selectCartTotal } from "../../store/cart/cartAction";
 
 export const Checkout = () => {
-  const { cartItems, cartTotal } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
 
   return (
     <CheckoutWrap>
@@ -61,8 +62,7 @@ const Header = styled.div`
 `;
 
 const Total = styled.span`
-margin-top: 30px;
-margin-left: auto;
-font-size: 36px;
-}
+  margin-top: 30px;
+  margin-left: auto;
+  font-size: 36px;
 `;

@@ -1,8 +1,6 @@
 export const INITIAL_CART_STATE = {
   cartOpen: false,
   cartItems: [],
-  cartCount: 0,
-  cartTotal: 0,
 };
 
 export const INITIAL_USER_STATE = {
